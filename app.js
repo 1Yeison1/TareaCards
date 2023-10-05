@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Llamada a la API (reemplaza 'URL_DE_TU_API' con la URL de tu API real)
-  fetch('./datos.json')
+
+  // Cambiar url a la de la api.
+  fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/Tarea_Filtrar_Imagenes/conexion.php')
     .then((response) => response.json())
     .then((data) => {
       const portfolioGallery = document.getElementById("portfolio-gallery");
@@ -8,15 +9,14 @@ document.addEventListener("DOMContentLoaded", function () {
       // Limpia el contenido actual del contenedor
       portfolioGallery.innerHTML = '';
 
-      // Recorre los datos de la API y crea las tarjetas dinámicamente
       data.forEach((item) => {
         const card = document.createElement("div");
-        card.className = `column ${item.category}`;
+        card.className = `column ${item.categoria}`;
         card.innerHTML = `
           <div class="content">
-            <img src="${item.url}" alt="${item.titulo}" style="width: 100%" />
-            <h4>${item.titulo}</h4>
-            <p>${item.descripcion}</p>
+            <img src="${item.url}" alt="${item.nombre}" style="width: 100%" />
+            <h4>${item.nombre}</h4>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
           </div>
         `;
         portfolioGallery.appendChild(card);
