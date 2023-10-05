@@ -1,25 +1,36 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", function () {
+  // Llamada a la API (reemplaza 'URL_DE_TU_API' con la URL de tu API real)
+  fetch('./datos.json')
+    .then((response) => response.json())
+    .then((data) => {
+      const portfolioGallery = document.getElementById("portfolio-gallery");
 
-  // Fetch Data
+      // Limpia el contenido actual del contenedor
+      portfolioGallery.innerHTML = '';
 
-  // Load Filters
-  filterSelection("all");
+      // Recorre los datos de la API y crea las tarjetas dinámicamente
+      data.forEach((item) => {
+        const card = document.createElement("div");
+        card.className = `column ${item.category}`;
+        card.innerHTML = `
+          <div class="content">
+            <img src="${item.url}" alt="${item.titulo}" style="width: 100%" />
+            <h4>${item.titulo}</h4>
+            <p>${item.descripcion}</p>
+          </div>
+        `;
+        portfolioGallery.appendChild(card);
+      });
+
+      // Llama a la función para inicializar los filtros
+      filterSelection("all");
+    })
+    .catch((error) => {
+      console.error("Error fetching data from API:", error);
+    });
 });
 
-
-const fetchData = () => {
-  const url = '';
-  
-  fetch(url)
-    .then( (data) => data.json())
-    .then( (cardsInfo) => {
-      console.log(cardsInfo);
-    })
-    .catch( (error)  => {
-      console.log(error);
-    })
-} 
-
+// filterSelection("all");
 
 function filterSelection(c) {
   var x, i;
