@@ -14,9 +14,9 @@ document.addEventListener("DOMContentLoaded", function () {
         card.className = `column ${item.categoria}`;
         card.innerHTML = `
           <div class="content">
-            <img src="${item.url}" alt="${item.nombre}" style="width: 100%" />
-            <h4>${item.nombre}</h4>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <img src="${item.imagenURL}" alt="${item.titulo}" style="width: 100%" />
+            <h4>${item.titulo}</h4>
+            <p>${item.descripcion}</p>
           </div>
         `;
         portfolioGallery.appendChild(card);
